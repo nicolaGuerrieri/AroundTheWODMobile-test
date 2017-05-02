@@ -1,7 +1,7 @@
 <ion-header class="colorPersonal">
   <ion-navbar>
     <ion-title>
-      <span *ngIf="luogoSelezionato && !nuovoLuogo">Detail</span><span *ngIf="nuovoLuogo">New place</span>
+      <span *ngIf="luogoSelezionato && !nuovoLuogo">Detail</span><span *ngIf="nuovoLuogo">Insert new place</span>
     </ion-title>
  
 	<ion-buttons end>
@@ -23,7 +23,7 @@
 
 	 <ion-fab right bottom>
 		<button mini *ngIf="nuovoLuogo" (click)="scrollToBottom()" ion-fab color="personal3"><ion-icon name="arrow-dropdown"></ion-icon></button>
-		<button *ngIf="luogoSelezionato && !nuovoLuogo" (click)="scrollToBottom()" ion-fab color="personal3"><img  src="assets/images/g.png"  style="width: 30px; height: 30px; border-radius: 0px;" alt="" class="imgDetail"></button>
+		<button *ngIf="luogoSelezionato && !nuovoLuogo" (click)="scrollToBottom()" ion-fab color="personal3"><img  src="{{global.preUrl}}/images/g.png"  style="width: 30px; height: 30px; border-radius: 0px;" alt="" class="imgDetail"></button>
 
 	</ion-fab>
 	<div class="row text-center" *ngIf="luogoSelezionato && false">
@@ -39,32 +39,32 @@
 	</div><br />
 	<div class="row" *ngIf="nuovoLuogo">
 		<span class="genericText">Select what can I do: </span><br />
-		<button *ngFor="let item of listaAttivita" (click)="addActivity(item)" class="buttonNavSenzaFontRound" ion-button icon-only>
-			<ion-icon name="{{ item }}"></ion-icon>
+		
+		<button *ngFor="let item of listaAttivita" (click)="selectActivity(item.nome)"  [ngClass]="{ 'disabilita': item.selezionato, 'buttonNavSenzaFontRound': !item.selezionato}" ion-button icon-only>
+			<ion-icon *ngIf="!item.img"  name="{{ item.nome }}"></ion-icon> 
+			<img *ngIf="item.img" src="{{global.preUrl}}/images/{{item.img}}"  style="" alt="" class="imgDetail altreIcona">
 		</button>
 	</div><br />
-	<div class="row" *ngIf="nuovoLuogo">
-		<span class="genericText">Your selected activity: </span><br />
-		<button *ngFor="let item of nuovoLuogoObject.listaAttivita" (click)="removeActivity(item)" class="buttonNavSenzaFontRound" ion-button icon-only>
-			<ion-icon name="{{ item }}"></ion-icon>
-		</button>
-	</div> 
-	<div class="row"  *ngIf="luogoSelezionato && !nuovoLuogo">
+ 	<div class="row"  *ngIf="luogoSelezionato && !nuovoLuogo">
 		<span class="genericText">What i can do: </span><br />
-		<button *ngFor="let item of luogoSelezionato.listaAttivita" disabled=disabled  class="buttonNavSenzaFontRound disabilita" ion-button icon-only>
-			<ion-icon name="{{ item }}"></ion-icon>
+		<button *ngFor="let item of luogoSelezionato.listaAttivitaCustom" class="disabilita" ion-button icon-only>
+			<ion-icon *ngIf="!item.img" name="{{ item.nome }}"></ion-icon>
+			<img *ngIf="item.img" src="{{global.preUrl}}/images/{{item.img}}"  style="" alt="" class="imgDetail altreIcona">
 		</button>
 	</div><br />
+	
+
 	<!-- se selezionato scorro la lista e prendo solo i nomi e mostro disabilitati, se nuovo faccio vedere tutti, faccio selezionare-->
 	<div class="row">
 		<div class="col" style="text-align: center; font-size: 20px; color: red;" *ngIf="nuovoLuogoObject" >
 			<div class="row text-center" *ngIf="nuovoLuogoObject.errore" >
 				{{nuovoLuogoObject.errore}}
 			</div>
-		</div>
+		</div>	
 	</div>
 	<ion-list *ngIf="nuovoLuogo">
 		<ion-item> 
+			
 			<ion-input type="text" placeholder="Place" floating  [(ngModel)]="nuovoLuogoObject.ricerca" *ngIf="nuovoLuogo"></ion-input>
 		<!--	<ion-input readonly type="text" placeholder="ricerca" floating [(ngModel)]="luogoSelezionato.ricerca" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>-->
 	 		<button *ngIf="nuovoLuogo" (click)="loadMapVed()" clear ion-button item-right class="buttonNavSenzaFont" style="color: white; font-size:15px"><ion-icon name="search"></ion-icon></button>
@@ -78,64 +78,64 @@
 	<ion-list>
 		<ion-item>
 			<ion-label color="primary" *ngIf="nuovoLuogo">City</ion-label>
-			<ion-input   type="text" placeholder="City" floating [(ngModel)]="nuovoLuogoObject.citta" *ngIf="nuovoLuogo"></ion-input>
-			<ion-input readonly type="text" placeholder="City" floating [(ngModel)]="luogoSelezionato.citta" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
+			<ion-input   type="text" placeholder="City" [(ngModel)]="nuovoLuogoObject.citta" *ngIf="nuovoLuogo"></ion-input>
+			<ion-input readonly type="text" placeholder="City"   [(ngModel)]="luogoSelezionato.citta" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
 		</ion-item>
 	</ion-list>
 	<br />
 	<br />
 	<ion-list>
 		 <ion-item> 
-			<ion-input type="text" placeholder="District" [(ngModel)]="nuovoLuogoObject.provincia"  floating *ngIf="nuovoLuogo"></ion-input>
-			<ion-input type="text" readonly placeholder="District"   floating [(ngModel)]="luogoSelezionato.provincia" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
+			<ion-input type="text" placeholder="District" [(ngModel)]="nuovoLuogoObject.provincia"    *ngIf="nuovoLuogo"></ion-input>
+			<ion-input type="text" readonly placeholder="District"     [(ngModel)]="luogoSelezionato.provincia" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
 		</ion-item>
 	</ion-list>
 	<br />
 	<br />
 	<ion-list>
 		<ion-item class="nowrap"> 
-			<ion-input type="text" [(ngModel)]="nuovoLuogoObject.nazione"  placeholder="Nation" floating *ngIf="nuovoLuogo"></ion-input>
-			<ion-input type="text" readonly placeholder="Nation"  floating [(ngModel)]="luogoSelezionato.nazione" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
+			<ion-input type="text" [(ngModel)]="nuovoLuogoObject.nazione"  placeholder="Nation"   *ngIf="nuovoLuogo"></ion-input>
+			<ion-input type="text" readonly placeholder="Nation"    [(ngModel)]="luogoSelezionato.nazione" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
 		</ion-item>
 	</ion-list>
 	<br />
 	<br />
 	<ion-list>
 		<ion-item> 
-			<ion-input type="text" placeholder="Street" [(ngModel)]="nuovoLuogoObject.via" floating *ngIf="nuovoLuogo"></ion-input>
-		<ion-input type="text" readonly placeholder="Street"  floating [(ngModel)]="luogoSelezionato.via" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
+			<ion-input type="text" placeholder="Street" [(ngModel)]="nuovoLuogoObject.via"   *ngIf="nuovoLuogo"></ion-input>
+		<ion-input type="text" readonly placeholder="Street"    [(ngModel)]="luogoSelezionato.via" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
 		</ion-item>
 	</ion-list>
 	<br />
 	<br />
 	<ion-list>
 		<ion-item> 
-		<ion-input type="text"  [(ngModel)]="nuovoLuogoObject.cap"  placeholder="Cap" floating *ngIf="nuovoLuogo"></ion-input>
-		<ion-input type="text" readonly placeholder="Cap" floating [(ngModel)]="luogoSelezionato.cap" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
+		<ion-input type="text"  [(ngModel)]="nuovoLuogoObject.cap"  placeholder="Cap"   *ngIf="nuovoLuogo"></ion-input>
+		<ion-input type="text" readonly placeholder="Cap"   [(ngModel)]="luogoSelezionato.cap" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
 		</ion-item>
 	</ion-list>
 	<br />
 	<br />
 	<ion-list>
 		<ion-item>
-		<ion-input type="text"  [(ngModel)]="nuovoLuogoObject.descrizione"   placeholder="Description" floating   *ngIf="nuovoLuogo"></ion-input>
-		<ion-input type="text" readonly placeholder="Description" floating [(ngModel)]="luogoSelezionato.descrizione" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
+		<ion-input type="text"  [(ngModel)]="nuovoLuogoObject.descrizione"   placeholder="Description"     *ngIf="nuovoLuogo"></ion-input>
+		<ion-input type="text" readonly placeholder="Description"   [(ngModel)]="luogoSelezionato.descrizione" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
 		</ion-item>
 	</ion-list>
 	<br />
 	<br />
 	<ion-list>
 		<ion-item>
-			<ion-input type="text"  [(ngModel)]="nuovoLuogoObject.attrezzature"   placeholder="Workout equipment" floating  *ngIf="nuovoLuogo"></ion-input>
-			<ion-input type="text" readonly placeholder="Workout equipment" floating [(ngModel)]="luogoSelezionato.attrezzature" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
+			<ion-input type="text"  [(ngModel)]="nuovoLuogoObject.attrezzature"   placeholder="Workout equipment"    *ngIf="nuovoLuogo"></ion-input>
+			<ion-input type="text" readonly placeholder="Workout equipment"   [(ngModel)]="luogoSelezionato.attrezzature" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
 		</ion-item>
 	</ion-list>
 	<br />
 	<br />
 	<ion-list>
 		<ion-item>
-		<ion-input type="text" placeholder="Time" floating  [(ngModel)]="nuovoLuogoObject.orari"  *ngIf="nuovoLuogo"></ion-input>
-		<ion-input type="text" readonly placeholder="time" floating [(ngModel)]="luogoSelezionato.orari" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
+		<ion-input type="text" placeholder="Time"    [(ngModel)]="nuovoLuogoObject.orari"  *ngIf="nuovoLuogo"></ion-input>
+		<ion-input type="text" readonly placeholder="time"   [(ngModel)]="luogoSelezionato.orari" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
 		</ion-item>
 	</ion-list>
 	<br />

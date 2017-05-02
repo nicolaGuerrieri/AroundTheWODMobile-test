@@ -37,18 +37,45 @@ export class Detail implements OnInit{
 	constructor(public navCtrl: NavController, public global:Global, public params:NavParams, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController,  public loading: LoadingController, public plt: Platform, public googleAuth:GoogleAuth, public user:User, public facebookAuth:FacebookAuth, public auth:Auth) {
 		this._isAndroid = plt.is('android');
 		this._isiOS = plt.is('ios');
-		this.listaAttivita= ['walk', 'american-football', 'basketball', 'bicycle', 'body', 'football', 'tennisball', 'water', 'paw', 'pizza', 'restaurant', 'cafe', 'cafe', 'cafe'];
+		this.loadAttivita();
+		
  	}
 	
+	
+	loadAttivita(){
+		this.cittaLuogoService.loadAttivita().then(data => {
+			this.listaAttivita = data;
+		});
+		
+	}
+	
+	riempiAttivita(){ 
+		this.luogoSelezionato.listaAttivitaCustom = [];
+		if(!this.listaAttivita || !this.luogoSelezionato.listaAttivita){
+			return;
+		}
+		for(var i = 0; i < this.listaAttivita.length; i++) {
+			for(var ia = 0; ia < this.luogoSelezionato.listaAttivita.length; ia++) {
+				console.log(">>>>>>>>>>>>>>");
+				console.log(this.luogoSelezionato.listaAttivita[ia]);
+				console.log(this.listaAttivita[i].nome);
+				
+				if(this.listaAttivita[i].nome == this.luogoSelezionato.listaAttivita[ia]){
+					console.log("entra");
+					this.luogoSelezionato.listaAttivitaCustom.push(this.listaAttivita[i]);
+				}
+			}
+		}
+	}
 	scrollToBottom() {
 		this.content.scrollToBottom();
 	}
-	ngOnInit() {
-		
+	ngOnInit() { 
 		this.idLuogo= this.params.get("idLuogo"); 
 		if(this.idLuogo != -1){
 			this.nuovoLuogo = false;
 			this.cercaPerId(this.idLuogo);
+			
 		}else{
 			this.nuovoLuogo = true;
 			this.nuovoLuogoObject = {};
@@ -65,36 +92,37 @@ export class Detail implements OnInit{
 			this.nuovoLuogoObject.errore = null;
 			this.nuovoLuogoObject.dal = null;
 			this.nuovoLuogoObject.al = null;
-			this.nuovoLuogoObject.listaAttivita= []; 
+			this.nuovoLuogoObject.listaAttivita= [];  
 			this.geolocalizza();
 		}
 	}
 	
+	
+	
 	removeActivity(post){
-		let index = this.nuovoLuogoObject.listaAttivita.indexOf(post);
-
-		if(index > -1){
-		  this.nuovoLuogoObject.listaAttivita.splice(index, 1);
+		for(var i = 0; i < this.listaAttivita.length; i++) {
+			if(post == this.listaAttivita[i].nome){
+				this.listaAttivita[i].selezionato = false;
+			}
 		}
-		this.addActivityAll(post);
 	}
-	removeActivityAll(post){
-		let index = this.listaAttivita.indexOf(post);
-
-		if(index > -1){
-		  this.listaAttivita.splice(index, 1);
+ 
+	
+	selectActivity(attivita){ 
+		//this.removeActivityAll(attivita);
+		//this.nuovoLuogoObject.listaAttivita.push(attivita);
+		
+		for(var i = 0; i < this.listaAttivita.length; i++) {
+			if(attivita == this.listaAttivita[i].nome){
+				if(this.listaAttivita[i].selezionato == true){
+					this.listaAttivita[i].selezionato = false;
+				}else{
+					this.listaAttivita[i].selezionato = true;
+				}
+			}
 		}
-	
 	}
-	
-	addActivity(attivita){ 
-		this.removeActivityAll(attivita);
-		this.nuovoLuogoObject.listaAttivita.push(attivita);
-	}
-	
-	addActivityAll(attivita){  
-		this.listaAttivita.push(attivita);
-	}
+	 
 	cercaPerId(idLuogoParameter){
 		try{
 			if(idLuogoParameter == null){
@@ -102,7 +130,9 @@ export class Detail implements OnInit{
 				return;
 			}else{
 				this.cittaLuogoService.getLuogoForId(idLuogoParameter).then(data => {
+					 
 					this.luogoSelezionato = data;
+					this.riempiAttivita();
 					this.cercaLuogo(this.luogoSelezionato);
 					 
 
@@ -143,12 +173,12 @@ export class Detail implements OnInit{
 		}else if(this.nuovoLuogoObject.nazione == undefined || this.nuovoLuogoObject.nazione.trim()== "" || this.nuovoLuogoObject.nazione.trim() == undefined){
 			this.nuovoLuogoObject.errore = "Insert nation";
 			return;
-		}else if(this.nuovoLuogoObject.descrizione == undefined || this.nuovoLuogoObject.descrizione.trim()== "" || this.nuovoLuogoObject.descrizione.trim() == undefined){
-			this.nuovoLuogoObject.errore = "Insert description"; 
-			return;
-		}else if(this.nuovoLuogoObject.attrezzature == undefined || this.nuovoLuogoObject.attrezzature.trim() == "" || this.nuovoLuogoObject.attrezzature.trim() == undefined){
-			this.nuovoLuogoObject.errore = "Insert workout equipment ";
-			return;
+		//}else if(this.nuovoLuogoObject.descrizione == undefined || this.nuovoLuogoObject.descrizione.trim()== "" || this.nuovoLuogoObject.descrizione.trim() == undefined){
+		//	this.nuovoLuogoObject.errore = "Insert description"; 
+		//	return;
+		//}else if(this.nuovoLuogoObject.attrezzature == undefined || this.nuovoLuogoObject.attrezzature.trim() == "" || this.nuovoLuogoObject.attrezzature.trim() == undefined){
+		//	this.nuovoLuogoObject.errore = "Insert workout equipment ";
+		//	return;
 		}	
 	}
 	
@@ -161,6 +191,9 @@ export class Detail implements OnInit{
 		}
 		let modal = this.modalCtrl.create(DialogSocial, {"from": "login"});
 		modal.onDidDismiss(data => {
+			if(!data){
+				return;
+			}
 			this.loginSocial(data);
 	    });
 		modal.present();
@@ -176,6 +209,10 @@ export class Detail implements OnInit{
 		}
 		
 		this.cittaLuogoService.loginSocial(social).then(socialData => {
+			if(!socialData){
+				this.loader.dismiss();
+				return;
+			}
 			let datiSocial = socialData;
 			if(datiSocial){ 
 				this.inviaDatiServer(socialData, this.loader);
@@ -188,7 +225,7 @@ export class Detail implements OnInit{
 	riempiOggetto(data){
 		var listaPrec = this.nuovoLuogoObject.listaAttivita;
 		this.nuovoLuogoObject = {};
-		this.nuovoLuogoObject.listaAttivita = listaPrec;
+		this.nuovoLuogoObject.listaAttivita = listaPrec; 
 		if(!data){
 			return;
 		}
@@ -240,7 +277,11 @@ export class Detail implements OnInit{
 			this.nuovoLuogoObject.aperto = 'true'; 
 			this.nuovoLuogoObject.cercaPostoNew =   this.nuovoLuogoObject.ricerca; 
 			this.nuovoLuogoObject.nome = this.nuovoLuogoObject.ricerca; 
-			 
+			for(var i = 0; i < this.listaAttivita.length; i++) {
+				if(true == this.listaAttivita[i].selezionato){
+					this.nuovoLuogoObject.listaAttivita.push(this.listaAttivita[i].nome);
+				}
+			}
 			this.cittaLuogoService.save(this.nuovoLuogoObject).then(data => {
 			 
 				if(data.status == 200){

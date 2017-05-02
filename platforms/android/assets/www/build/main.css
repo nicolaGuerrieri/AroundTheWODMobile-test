@@ -29090,6 +29090,12 @@ page-home {
   background-color: #0fb8ad !important;
 }
 
+.list-md .item-input.ng-valid.input-has-value:not(.input-has-focus):last-child {
+  border-bottom-color: transparent !important;
+  border-bottom: 1px solid gray !important;
+  box-shadow: inset 0 -1px 0 0 gray;
+}
+
 input {
   text-align: center;
 }
@@ -29104,13 +29110,22 @@ input {
   background-color: #1fc8db !important;
 }
 
+.altreIcona {
+  padding: 2px;
+  width: 35px;
+  height: 35px;
+  border-radius: 0px;
+}
+
 .buttonNavSenzaFont {
   color: white !important;
   background-color: #1fc8db !important;
 }
 
 .disabilita {
-  opacity: .7 !important;
+  color: white !important;
+  background-color: #0fb8ad !important;
+  font-size: 15px;
 }
 
 .buttonNavSenzaFontRound {

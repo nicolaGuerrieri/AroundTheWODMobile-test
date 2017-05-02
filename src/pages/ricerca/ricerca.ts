@@ -35,8 +35,11 @@ export class Ricerca {
 		animate: true,
 		animation: 'wp-transition'
 	};
-	
+	public listaAttivita: any;
+
+		
 	constructor(public actionSheetCtrl: ActionSheetController, public navCtrl: NavController, public global:Global, public params:NavParams, public user:User, public cittaLuogoService: CittaLuogoService, private modalCtrl: ModalController,  public loading: LoadingController, public plt: Platform, public facebookAuth:FacebookAuth, public auth:Auth) {
+		this.loadAttivita();
 		this.cittaLuogo = [];
 		this.citta= params.get("citta"); 
 		this.allSearchPlace = params.get("allSearchPlace");
@@ -44,8 +47,13 @@ export class Ricerca {
 		this.address = {
 			place: this.citta
 		}; 
+		
 	}
-	
+	loadAttivita(){
+		this.cittaLuogoService.loadAttivita().then(data => {
+			this.listaAttivita = data;
+		});
+	}
 	presentActionSheet() {
 		let actionSheet = this.actionSheetCtrl.create({
 		  title: 'Menu',
@@ -348,13 +356,31 @@ export class Ricerca {
 				this.cittaLuogoService.load(cittaP).then(data => {
 					this.cittaLuogo = data;
 					this.loadMapWithPlace(this.cittaLuogo);
-					
+					this.riempiAttivita();
 				});
 			}
 		}catch (e) {
 		   alert("error: " + e);
 		}
 	}
+	
+	riempiAttivita(){  
+		if(!this.listaAttivita){
+			return;
+		}
+		
+		for(var i = 0; i < this.listaAttivita.length; i++) {
+			this.cittaLuogo.forEach((cittaLuogoItem: any) => {
+				cittaLuogoItem.listaAttivitaCustom=[];
+				for(var ia = 0; ia < cittaLuogoItem.listaAttivita.length; ia++) {			
+					if(this.listaAttivita[i].nome == cittaLuogoItem.listaAttivita[ia]){ 
+						cittaLuogoItem.listaAttivitaCustom.push(this.listaAttivita[i]);
+					}
+				}
+			});
+		}
+	}
+	
 	back(){
 		if(this.loader){
 			this.loader.dismiss();

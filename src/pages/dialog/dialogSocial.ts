@@ -65,7 +65,7 @@ export class DialogSocial {
 	
 	//f33b26b8
 	dismiss() {
-		this.viewCtrl.dismiss();
+		this.viewCtrl.dismiss("");
 	}
 	doInstagram() { 
 	   this.platform.ready().then(() => {
