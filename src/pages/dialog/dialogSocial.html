@@ -1,0 +1,126 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title  *ngIf="from == 'social'">
+      Social share
+    </ion-title>
+	<ion-title  *ngIf="from == 'login'">
+      Social login
+    </ion-title>
+	<ion-title  *ngIf="from == 'info'">
+      Who we are?
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+ <ion-content>
+	<div class="row"  *ngIf="from == 'social'">
+		<div class="col" style="text-align: center;">
+			<br />
+			<span  style="text-align: center; font-size: 30px;" color="personal3">
+				Share with your friends AroundTheWOD App...<br />
+				Choose your favorite social
+			</span>
+		
+			<br />
+			<br />
+			<button ion-button class="buttonNavSenzaFont" round icon-only (click)="doFacebook()">
+				<ion-icon name="logo-facebook"></ion-icon>
+			</button>
+			<button ion-button class="buttonNavSenzaFont" round icon-only (click)="doInstagram()">
+				<ion-icon name="logo-instagram"></ion-icon> 
+			</button>
+			<button ion-button class="buttonNavSenzaFont" round icon-only (click)="doTwitter()">
+				<ion-icon name="logo-twitter"></ion-icon> 
+			</button>
+	
+			<button ion-button class="buttonNavSenzaFont" round icon-only (click)="doShare()">
+				<ion-icon name="share"></ion-icon> 
+			</button>
+			
+			<br />
+			<br />
+			* To share on Instagram or Facebook you can paste a message manually
+		<!--	<button ion-button color="primary" full (click)="doFacebook()">
+				<ion-icon name="logo-facebook"></ion-icon>&nbsp;&nbsp;
+				Share on Facebook
+			</button>
+			<button ion-button color="primary" full (click)="doInstagram()">
+				<ion-icon name="logo-instagram"></ion-icon>&nbsp;&nbsp;
+					Share on Instagram
+			</button>
+			<button ion-button color="primary" full (click)="doTwitter()">
+				<ion-icon name="logo-twitter"></ion-icon>&nbsp;&nbsp;
+				Share on Twitter
+			</button>
+			<button ion-button color="primary" full (click)="doShare()">
+				<ion-icon name="logo-share"></ion-icon>&nbsp;&nbsp;
+				Or choose another... loginGoogle1
+			</button>-->
+		</div>
+	</div>
+	<div class="row"  *ngIf="from == 'login'">
+		<div class="col" style="text-align: center;"  *ngIf="!_isiOS && androidVersion >= 6">
+			<button (click)="loginGoogle()" class="buttonNavSenzaFont" ion-button icon-left>
+			  <ion-icon name="logo-google"></ion-icon>&nbsp;&nbsp;
+				Login with google
+			</button>
+		</div>
+		<div class="col" style="text-align: center;" *ngIf="!_isiOS && androidVersion >= 6">
+			<button (click)="loginFacebook()" class="buttonNavSenzaFont" ion-button icon-left>
+			  <ion-icon name="logo-facebook"></ion-icon>&nbsp;&nbsp;
+				Login with facebook
+			</button>
+		</div>
+		<div class="col" style="text-align: center;">
+			<button (click)="loginInstagram()" class="buttonNavSenzaFont" ion-button icon-left>
+			  <ion-icon name="logo-instagram"></ion-icon>&nbsp;&nbsp;
+				Login with instagram
+			</button>
+		</div>
+	</div>
+	<br /> 
+	<div  *ngIf="from == 'info'" class="centraTutto"  style="text-align: center; color: #2cb5e8; padding: 10px;">
+		<img src="assets/images/ket.jpg" class="img-circular centraTutto" style="border-radius: 100px; border: 1px solid #2cb5e8;" > 
+		<br />
+		<br /> 
+		<span style="text-align: center; font-size: 30px; color: #2cb5e8;" >
+			AroundTheWod App...<br /> </span><br />
+		<span *ngIf="global.language != 'it'" style="text-align: center; font-size: 15px; color: #2cb5e8;" >
+			was born from the idea of bringing to all outdoor athletes, competitors or not, knowledge about the many sports locations that each municipality makes available for citizens. From fitness trails to parks equipped with facilities for bodyweight training, from trail-run paths to real open-air gyms. From today, all this is traceable and reachable with one click. Sport is a source of incitement, well-being, but overall sharing. Get off your comfort zone and be part of Around The Wod Community.
+			<br /></span>
+		<span *ngIf="global.language != 'it'"  style="text-align: center; font-size: 20px; color: #2cb5e8;" >
+			The discovery starts now!<br /> </span>
+		<span *ngIf="global.language == 'it'"  style="text-align: center; font-size: 15px; color: #2cb5e8;" >
+			 nasce dall'idea di portare tutti gli sportivi outdoor, agonisti e non, a conoscenza delle varie location a sfondo sportivo che ogni comune mette a disposizione  dei propri cittadini. 	Dai percorsi vita ai parchi attrezzati con strutture per praticare allenamento a corpo libero,dai tracciati dedicati al trail run alle vere e proprie palestre a cielo aperto... Da oggi ,tutte rintracciabili e raggiungibili con un solo click. Lo sport è  fonte di stimolo, benessere, ma soprattutto condivisione. Uscite dalla vostra zona di comfort ed entrate a far parte della ArounTheWod  Community. 
+			<br /></span>
+		<span *ngIf="global.language == 'it'"  style="text-align: center; font-size: 20px; color: #2cb5e8;" >
+			La scoperta inizia ora...<br /> </span>
+	</div>
+	
+	<br />
+	<div *ngIf="from == 'fast' && androidVersion >= 6" class="col" style="text-align: center;">
+		<button (click)="loginSocial('google')" class="buttonNavSenzaFont" ion-button icon-left>
+		  <ion-icon name="logo-google"></ion-icon>&nbsp;&nbsp;
+			Login with google
+		</button>
+	</div>
+		
+	<div  *ngIf="from == 'fast' && androidVersion >= 6"  class="col" style="text-align: center;">
+		<button (click)="loginSocial('facebook')" class="buttonNavSenzaFont" ion-button icon-left>
+		  <ion-icon name="logo-facebook"></ion-icon>&nbsp;&nbsp;
+			Login with facebook
+		</button>
+	</div> 
+	<div *ngIf="from == 'fast'"  class="col" style="text-align: center;">
+		<button (click)="loginSocial('instagram')" class="buttonNavSenzaFont" ion-button icon-left>
+		  <ion-icon name="logo-instagram"></ion-icon>&nbsp;&nbsp;
+			Login with instagram
+		</button>
+	</div>
+	<br />
+	<div class="centraTutto"  style="text-align: center;">
+		<button (click)="dismiss()" ion-button class="buttonNavSenzaFont" icon-left>
+			<ion-icon name="back" showWhen="android,windows,ios"></ion-icon>
+			Close
+		</button>
+	</div>
+</ion-content>

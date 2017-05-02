@@ -1,0 +1,12 @@
+{
+  "name": "aroundTheWODMobileTest",
+  "app_id": "f33b26b8",
+  "v2": true,
+  "typescript": true,
+  "proxies": [
+    {
+      "path": "/provaV2/",
+      "proxyUrl": "http://app.nicolaguerrieri.it:3002/"
+    }
+  ]
+}

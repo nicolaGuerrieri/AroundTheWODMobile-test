@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+		Oh yes...
+    </ion-title> 
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+	<br />
+	<div class="centraTutto"  style="text-align: center; color: #2cb5e8;">
+		<br />
+		<button *ngIf="!global._isiOS" style="font-size: 150px; color: #2cb5e8; background-color: white;">
+			<ion-icon   ios="ios-happy" md="md-happy"></ion-icon>
+		</button><br />
+		<button  *ngIf="global._isiOS" style="font-size: 70px; color: #2cb5e8; background-color: white;">
+			<ion-icon   ios="ios-happy" md="md-happy"></ion-icon>
+		</button><br />
+		<span  style="text-align: center; font-size: 40px; color: #2cb5e8;" >That's great! Your place has been insert!</span><br />
+		<span  style="text-align: center; font-size: 20px; color: #2cb5e8;" >thank you for your contribution, other users will find it useful...</span>
+	</div>
+	
+	<br />
+	<div class="centraTutto"  style="text-align: center;">
+		<ion-buttons start>
+		  <button ion-button (click)="dismiss()" class="buttonNavSenzaFont">
+			<span ion-text color="white">Cancel  </span>
+			<ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+		  </button>
+		</ion-buttons>
+	</div>
+</ion-content>

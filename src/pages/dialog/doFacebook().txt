@@ -1,0 +1,14 @@
+doFacebook() {
+		var full_name;
+		try{
+			SocialSharing.shareViaFacebookWithPasteMessageHint(this.message, null, null, this.url).then((result) => {
+				alert(result);
+			}).catch(() => {
+			  alert("Error please contact AroundTheWOD support");
+			});
+			 
+			
+		}catch (e) {
+		   alert("error: " + e);
+		}
+	}

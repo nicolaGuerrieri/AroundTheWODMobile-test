@@ -1,0 +1,59 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-background-mode": {
+            "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
+        },
+        "cordova-plugin-facebook4": {
+            "APP_ID": "1116576615134600",
+            "APP_NAME": "AroundTheWODMobile",
+            "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
+        },
+        "cordova-plugin-geolocation": {
+            "GEOLOCATION_USAGE_DESCRIPTION": " ",
+            "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
+        },
+        "cordova-plugin-googleplus": {
+            "REVERSED_CLIENT_ID": "myreversedclientid",
+            "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
+        },
+        "cordova-plugin-x-socialsharing": {
+            "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
+        },
+        "cordova.plugins.diagnostic": {
+            "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.ionicframework.aroundthewodmobile356464"
+        }
+    }
+}

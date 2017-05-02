@@ -1,0 +1,127 @@
+// http://ionicframework.com/docs/v2/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+.toolbar-background, .button-effect, .button-effect::after, .bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default{
+	background-color:  map-get($colors, personal3);
+	color: white;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+.toolbar-title{
+	color: white;
+}
+.button-md .button-effect{
+	background-color:  map-get($colors, personal3);
+}
+.button-md{
+	background-color:  map-get($colors, personal3);
+}
+.button-md::hover{
+	background-color:  map-get($colors, personal2);
+}
+.button-md.activated{
+	background-color:  map-get($colors, personal3);
+}
+.buttonNavText{
+	color: white;
+}
+.centraTutto{
+	display:block;
+	margin:auto;
+}
+
+#map {
+    width: 100%;
+    height: 200px;
+}
+ion-list{
+	margin-bottom: 1px !important;
+}
+
+.center {
+	-webkit-box-ordinal-group: 1;
+	-moz-box-ordinal-group: 1;
+	-webkit-order: 0;
+	-ms-flex-order: 0;
+	order: 0;
+	-webkit-box-flex: 1;
+	-moz-box-flex: 1;
+	-webkit-flex: 1 1 auto;
+	-ms-flex: 1 1 auto;
+	flex: 1 1 auto;
+	-webkit-align-self: auto;
+	-ms-flex-item-align: auto;
+	align-self: auto;
+}
+
+.img-circular{
+	width: 200px;
+	height: 200px;
+	background-size: cover;
+	display: block;
+	border: 0px !important;
+	border-bottom-color: transparent !important;
+	border-radius: 100px;
+	
+}
+.cardR{
+	width: 100%; 
+	margin-left: 0; 
+	margin-bottom: 10px; 
+	text-align: left;
+	border: 2px solid #bdbdbd;
+	padding-top: 5px;
+}
+
+.hrS{
+	height: 3px; 
+	font-size: 2px; 
+	width: 100%;
+	background:  color($colors, personal3) !important;
+}
+.img-circular3{
+	width: 200px;
+	height: 200px;
+	background-size: cover;
+	display: block;
+}
+.imgDetail{ 
+	height: 30vh;
+	width: auto;
+	margin: auto;
+	display: block;
+	border-radius: 80px;
+}
+.imgDetailLittle{ 
+	height: 10vh;
+	width: auto;
+	margin: auto;
+	display: block;
+	border-radius: 100px;
+}
+
+button.buttonClass{
+	background: color($colors, personal3) !important;
+	color: white !important;
+}
+
+.inputSearch{
+	text-align: center;
+	border: 2px solid map-get($colors, personal3) !important;
+	border-radius: 10px;
+}

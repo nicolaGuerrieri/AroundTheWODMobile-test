@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<widget id="com.ionicframework.aroundthewodmobile356464" version="1.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
+  <name>AroundTheWOD App - TEST</name>
+  <description>An awesome Nic app.</description>
+  <author email="guerrierinicola@gmail.com" href="http://ionicframework.com/">AroundTheWOD Team</author>
+  <content src="index.html"/>
+  <access origin="*"/>
+  <allow-navigation href="http://ionic.local/*"/>
+  <allow-navigation href="http://app.nicolaguerrieri.it:3000/"/>
+  <allow-navigation href="http://10.10.1.173:8100"/>
+  <allow-intent href="http://*/*"/>
+  <allow-intent href="https://*/*"/>
+  <allow-intent href="tel:*"/>
+  <allow-intent href="sms:*"/>
+  <allow-intent href="geo:*"/>
+  <allow-intent href="mailto:*"/>
+  <allow-intent href="https://maps.googleapis.com"/>
+  <allow-intent href="http://maps.googleapis.com"/>
+  <platform name="android">
+    <allow-intent href="market:*"/>
+    <allow-intent href="http://*/*"/>
+    <allow-intent href="https://*/*"/>
+    <allow-intent href="tel:*"/>
+    <allow-intent href="sms:*"/>
+    <allow-intent href="geo:*"/>
+    <allow-intent href="mailto:*"/>
+    <allow-intent href="https://maps.googleapis.com"/>
+    <icon src="resources\android\icon\drawable-ldpi-icon.png" density="ldpi"/>
+    <icon src="resources\android\icon\drawable-mdpi-icon.png" density="mdpi"/>
+    <icon src="resources\android\icon\drawable-hdpi-icon.png" density="hdpi"/>
+    <icon src="resources\android\icon\drawable-xhdpi-icon.png" density="xhdpi"/>
+    <icon src="resources\android\icon\drawable-xxhdpi-icon.png" density="xxhdpi"/>
+    <icon src="resources\android\icon\drawable-xxxhdpi-icon.png" density="xxxhdpi"/>
+  </platform>
+  <platform name="ios">
+    <allow-intent href="itms:*"/>
+    <allow-intent href="itms-apps:*"/>
+    <allow-intent href="http://*/*"/>
+    <allow-intent href="https://*/*"/>
+    <allow-intent href="tel:*"/>
+    <allow-intent href="sms:*"/>
+    <allow-intent href="geo:*"/>
+    <allow-intent href="mailto:*"/>
+    <allow-intent href="https://maps.googleapis.com"/>
+    <allow-intent href="http://maps.googleapis.com"/>
+    <icon src="resources\ios\icon\icon.png" width="57" height="57"/>
+    <icon src="resources\ios\icon\icon@2x.png" width="114" height="114"/>
+    <icon src="resources\ios\icon\icon-40.png" width="40" height="40"/>
+    <icon src="resources\ios\icon\icon-40@2x.png" width="80" height="80"/>
+    <icon src="resources\ios\icon\icon-40@3x.png" width="120" height="120"/>
+    <icon src="resources\ios\icon\icon-50.png" width="50" height="50"/>
+    <icon src="resources\ios\icon\icon-50@2x.png" width="100" height="100"/>
+    <icon src="resources\ios\icon\icon-60.png" width="60" height="60"/>
+    <icon src="resources\ios\icon\icon-60@2x.png" width="120" height="120"/>
+    <icon src="resources\ios\icon\icon-60@3x.png" width="180" height="180"/>
+    <icon src="resources\ios\icon\icon-72.png" width="72" height="72"/>
+    <icon src="resources\ios\icon\icon-72@2x.png" width="144" height="144"/>
+    <icon src="resources\ios\icon\icon-76.png" width="76" height="76"/>
+    <icon src="resources\ios\icon\icon-76@2x.png" width="152" height="152"/>
+    <icon src="resources\ios\icon\icon-83.5@2x.png" width="167" height="167"/>
+    <icon src="resources\ios\icon\icon-small.png" width="29" height="29"/>
+    <icon src="resources\ios\icon\icon-small@2x.png" width="58" height="58"/>
+    <icon src="resources\ios\icon\icon-small@3x.png" width="87" height="87"/>
+  </platform>
+  <preference name="AutoHideSplashScreen" value="false" />
+  <preference name="SplashScreenDelay" value="10"/>
+  <preference name="ShowSplashScreen" value="false"/>
+  <preference name="webviewbounce" value="false"/>
+  <preference name="UIWebViewBounce" value="false"/>
+  <preference name="DisallowOverscroll" value="true"/>
+  <preference name="android-minSdkVersion" value="16"/>
+  <preference name="BackupWebStorage" value="none"/>
+  <preference name="SplashMaintainAspectRatio" value="true"/>
+  <preference name="FadeSplashScreenDuration" value="100"/>
+  <preference name="SplashShowOnlyFirstTime" value="false"/>
+  <feature name="StatusBar">
+    <param name="ios-package" onload="true" value="CDVStatusBar"/>
+  </feature>
+  <plugin name="ionic-plugin-keyboard" spec="~2.2.1"/>
+  <plugin name="cordova-plugin-whitelist" spec="1.3.1"/>
+  <plugin name="cordova-plugin-console" spec="1.0.5"/>
+  <plugin name="cordova-plugin-statusbar" spec="2.2.1"/>
+  <plugin name="cordova-plugin-device" spec="1.1.4"/>
+  <plugin name="cordova-plugin-splashscreen" spec="~4.0.1"/>
+  <plugin name="cordova-plugin-facebook4" spec="~1.7.4">
+    <variable name="APP_ID" value="1116576615134600"/>
+    <variable name="APP_NAME" value="aroundTheWodMobile"/>
+  </plugin>
+  <plugin name="cordova-plugin-inappbrowser" spec="~1.6.1"/>
+  <plugin name="cordova-plugin-googleplus" spec="~5.1.1">
+    <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.923547097240-eqmutiom8bvb95u9bjv14vg410cpd5gm"/>
+  </plugin>
+  <icon src="resources\android\icon\drawable-xhdpi-icon.png"/>
+</widget>

@@ -1,0 +1,78 @@
+<ion-header class="colorPersonal">
+  <ion-navbar>
+    <ion-title>
+		Search places in <span style="text-transform: capitalize">{{citta}}</span>
+    </ion-title>
+ 
+	<ion-buttons end>
+
+		<button style="font-size: 30px;"(click)="presentActionSheet()" class="buttonClass" ion-button>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+	</ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding style="">
+
+	<div #map id="map"></div>  
+	<br />
+	<br />
+	<!--Places in:  	<ion-chip>	  <ion-label style="text-transform: capitalize;">{{citta}}</ion-label>	</ion-chip>	<hr class="hrS">	<br />	<br />-->
+	 <ion-fab  right bottom>
+		<button mini (click)="addPlace()" ion-fab color="personal3"><ion-icon name="md-add"></ion-icon></button>
+	</ion-fab>
+	
+	<ion-card *ngFor="let item of cittaLuogo" tappable style="" class="cardR" (click)="selectPlace(item._id)">
+	 <!-- <img class="imgDetailLittle" *ngIf="item.foto != null" src="{{global.preUrl}}users/leggi/{{item.foto}}"/>-->
+ 
+	  <ion-card-content >
+ 
+		<ion-card-title>
+		  {{ item.nome }} {{ item.citta }}
+		</ion-card-title>
+		<h2><b>{{ item.provincia }} {{ item.nazione }}</b></h2>  
+		<p>
+			{{ item.descrizione }} <br />
+			{{ item.orario }} {{ item.punto_risotro }}
+			{{ item.via }}{{ item.sempreAperto }} {{ item.ricerca }} 
+		</p>
+	  </ion-card-content>
+	  <ion-row no-padding>
+		  <ion-col>
+	 
+		  </ion-col>
+		  <ion-col text-center>
+	 
+		  </ion-col>
+		  <ion-col text-right>
+			<button ion-button style="background-color: white; font-size:17px; font-weight: bold;" clear small color="personal3" icon-left>
+			  <ion-icon name='share-alt'></ion-icon>
+			  Detail
+			</button>
+		  </ion-col>
+      </ion-row>
+	</ion-card> 
+	 <div class="textNoResults" *ngIf="cittaLuogo.length == 0" >  
+		<ion-icon  ios="ios-sad" md="md-sad"></ion-icon>
+		No results found for this place...
+	</div>
+	
+	
+	
+	
+</ion-content>
+ <ion-footer class="centraTutto">
+  <ion-toolbar style="color: white; font-size: 35px;"  >
+	<ion-title class="centraTutto">Follow us</ion-title>
+	<div class="centraTutto" style="padding-left: 15px;">
+		<a (click)="global.openSocial('facebook')" >
+			<ion-icon name="logo-facebook"></ion-icon>
+		</a> 
+		<a (click)="global.openSocial('instagram')" >		
+			<ion-icon data-href="https://www.instagram.com/aroundthewodapp/?hl=it" name="logo-instagram"></ion-icon> 
+		</a> 
+	</div>
+	<span style="font-size: 10px; color: white;">{{global.preUrl}}</span>
+  </ion-toolbar>
+</ion-footer>
