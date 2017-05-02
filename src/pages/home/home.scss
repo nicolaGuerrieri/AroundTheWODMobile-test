@@ -32,9 +32,17 @@ input{
   background-color: color($colors, personal3) !important;
 
 }
-
+ion-input{
+	text-transform: capitalize;
+}
 .altreIcona{
 	padding: 2px; width: 35px; height: 35px; border-radius: 0px;
+}
+
+.altreIconaLittle{
+	  width: 30px; height: 25px; border-radius: 0px;
+	padding-left: 3px;
+	padding-right: 3px;
 }
 
 .buttonNavSenzaFont{
@@ -45,6 +53,11 @@ input{
 .disabilita{ 
   color: white !important;
   background-color: color($colors, personal1) !important;
+  font-size: 15px;
+}
+.disabilitaBlue{ 
+  color: white !important;
+  background-color: color($colors, personal3) !important;
   font-size: 15px;
 }
 .buttonNavSenzaFontRound{

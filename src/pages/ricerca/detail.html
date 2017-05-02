@@ -47,10 +47,13 @@
 	</div><br />
  	<div class="row"  *ngIf="luogoSelezionato && !nuovoLuogo">
 		<span class="genericText">What i can do: </span><br />
-		<button *ngFor="let item of luogoSelezionato.listaAttivitaCustom" class="disabilita" ion-button icon-only>
-			<ion-icon *ngIf="!item.img" name="{{ item.nome }}"></ion-icon>
-			<img *ngIf="item.img" src="{{global.preUrl}}/images/{{item.img}}"  style="" alt="" class="imgDetail altreIcona">
-		</button>
+		<span  *ngFor="let item of luogoSelezionato.listaAttivita" >
+			<button class="disabilitaBlue" ion-button icon-only *ngIf="item.selezionato">
+				
+				<ion-icon *ngIf="!item.img && item.selezionato" name="{{ item.nome }}"></ion-icon>
+				<img *ngIf="item.img && item.selezionato" src="{{global.preUrl}}/images/{{item.img}}"  style="" alt="" class="imgDetail altreIcona">
+			</button>
+		</span>
 	</div><br />
 	
 
@@ -77,8 +80,7 @@
 	<br />
 	<ion-list>
 		<ion-item>
-			<ion-label color="primary" *ngIf="nuovoLuogo">City</ion-label>
-			<ion-input   type="text" placeholder="City" [(ngModel)]="nuovoLuogoObject.citta" *ngIf="nuovoLuogo"></ion-input>
+			<ion-input type="text" placeholder="City" [(ngModel)]="nuovoLuogoObject.citta" *ngIf="nuovoLuogo"></ion-input>
 			<ion-input readonly type="text" placeholder="City"   [(ngModel)]="luogoSelezionato.citta" *ngIf="luogoSelezionato && !nuovoLuogo"></ion-input>
 		</ion-item>
 	</ion-list>

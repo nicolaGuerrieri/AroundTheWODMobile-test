@@ -356,7 +356,7 @@ export class Ricerca {
 				this.cittaLuogoService.load(cittaP).then(data => {
 					this.cittaLuogo = data;
 					this.loadMapWithPlace(this.cittaLuogo);
-					this.riempiAttivita();
+					 
 				});
 			}
 		}catch (e) {
@@ -364,23 +364,7 @@ export class Ricerca {
 		}
 	}
 	
-	riempiAttivita(){  
-		if(!this.listaAttivita){
-			return;
-		}
 		
-		for(var i = 0; i < this.listaAttivita.length; i++) {
-			this.cittaLuogo.forEach((cittaLuogoItem: any) => {
-				cittaLuogoItem.listaAttivitaCustom=[];
-				for(var ia = 0; ia < cittaLuogoItem.listaAttivita.length; ia++) {			
-					if(this.listaAttivita[i].nome == cittaLuogoItem.listaAttivita[ia]){ 
-						cittaLuogoItem.listaAttivitaCustom.push(this.listaAttivita[i]);
-					}
-				}
-			});
-		}
-	}
-	
 	back(){
 		if(this.loader){
 			this.loader.dismiss();

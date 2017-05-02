@@ -49,24 +49,7 @@ export class Detail implements OnInit{
 		
 	}
 	
-	riempiAttivita(){ 
-		this.luogoSelezionato.listaAttivitaCustom = [];
-		if(!this.listaAttivita || !this.luogoSelezionato.listaAttivita){
-			return;
-		}
-		for(var i = 0; i < this.listaAttivita.length; i++) {
-			for(var ia = 0; ia < this.luogoSelezionato.listaAttivita.length; ia++) {
-				console.log(">>>>>>>>>>>>>>");
-				console.log(this.luogoSelezionato.listaAttivita[ia]);
-				console.log(this.listaAttivita[i].nome);
-				
-				if(this.listaAttivita[i].nome == this.luogoSelezionato.listaAttivita[ia]){
-					console.log("entra");
-					this.luogoSelezionato.listaAttivitaCustom.push(this.listaAttivita[i]);
-				}
-			}
-		}
-	}
+	
 	scrollToBottom() {
 		this.content.scrollToBottom();
 	}
@@ -131,8 +114,7 @@ export class Detail implements OnInit{
 			}else{
 				this.cittaLuogoService.getLuogoForId(idLuogoParameter).then(data => {
 					 
-					this.luogoSelezionato = data;
-					this.riempiAttivita();
+					this.luogoSelezionato = data; 
 					this.cercaLuogo(this.luogoSelezionato);
 					 
 
@@ -173,16 +155,26 @@ export class Detail implements OnInit{
 		}else if(this.nuovoLuogoObject.nazione == undefined || this.nuovoLuogoObject.nazione.trim()== "" || this.nuovoLuogoObject.nazione.trim() == undefined){
 			this.nuovoLuogoObject.errore = "Insert nation";
 			return;
+		}else {	
+			var conta = 0;
+			for(var i = 0; i < this.listaAttivita.length; i++) {
+				if(this.listaAttivita[i].selezionato){
+					conta++;
+				}
+			}
+			if(conta == 0){
+				this.nuovoLuogoObject.errore = "Select an activity";
+				return;
+			}
+		}	
+	}
+	
 		//}else if(this.nuovoLuogoObject.descrizione == undefined || this.nuovoLuogoObject.descrizione.trim()== "" || this.nuovoLuogoObject.descrizione.trim() == undefined){
 		//	this.nuovoLuogoObject.errore = "Insert description"; 
 		//	return;
 		//}else if(this.nuovoLuogoObject.attrezzature == undefined || this.nuovoLuogoObject.attrezzature.trim() == "" || this.nuovoLuogoObject.attrezzature.trim() == undefined){
 		//	this.nuovoLuogoObject.errore = "Insert workout equipment ";
 		//	return;
-		}	
-	}
-	
-	
 	salva(){
 		
 		this.validaDati();
@@ -277,11 +269,7 @@ export class Detail implements OnInit{
 			this.nuovoLuogoObject.aperto = 'true'; 
 			this.nuovoLuogoObject.cercaPostoNew =   this.nuovoLuogoObject.ricerca; 
 			this.nuovoLuogoObject.nome = this.nuovoLuogoObject.ricerca; 
-			for(var i = 0; i < this.listaAttivita.length; i++) {
-				if(true == this.listaAttivita[i].selezionato){
-					this.nuovoLuogoObject.listaAttivita.push(this.listaAttivita[i].nome);
-				}
-			}
+					this.nuovoLuogoObject.listaAttivita = this.listaAttivita;
 			this.cittaLuogoService.save(this.nuovoLuogoObject).then(data => {
 			 
 				if(data.status == 200){

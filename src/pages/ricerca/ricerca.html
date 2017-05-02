@@ -37,11 +37,13 @@
 			{{ item.orario }} {{ item.punto_risotro }}
 			{{ item.via }}{{ item.sempreAperto }} {{ item.ricerca }} 
 		</p>
-		<div class="row" *ngIf="nuovoLuogo">
-			<button *ngFor="let itemm of item.listaAttivitaCustom" class="buttonNavSenzaFontRound" style="font-size=10px" ion-button icon-only>
-				<ion-icon *ngIf="!itemm.img"  name="{{ itemm.nome }}"></ion-icon> 
-				<img *ngIf="itemm.img" src="{{global.preUrl}}/images/{{itemm.img}}"  style="" alt="" class="imgDetail altreIcona">
-			</button>
+		<div class="row" >
+			<span *ngFor="let itemm of item.listaAttivita">
+				<button *ngIf="itemm.selezionato" class="buttonNavSenzaFontRound" style="font-size:10px" ion-button icon-only>
+					<ion-icon *ngIf="!itemm.img"  name="{{ itemm.nome }}"></ion-icon> 
+					<img *ngIf="itemm.img" src="{{global.preUrl}}/images/{{itemm.img}}"  style="" alt="" class="imgDetail altreIconaLittle">
+				</button>
+			</span>
 		</div><br />
 	  </ion-card-content>
 	  <ion-row no-padding>
