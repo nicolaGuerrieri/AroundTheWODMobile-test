@@ -29110,11 +29110,23 @@ input {
   background-color: #1fc8db !important;
 }
 
+ion-input {
+  text-transform: capitalize;
+}
+
 .altreIcona {
   padding: 2px;
   width: 35px;
   height: 35px;
   border-radius: 0px;
+}
+
+.altreIconaLittle {
+  width: 30px;
+  height: 25px;
+  border-radius: 0px;
+  padding-left: 3px;
+  padding-right: 3px;
 }
 
 .buttonNavSenzaFont {
@@ -29125,6 +29137,12 @@ input {
 .disabilita {
   color: white !important;
   background-color: #0fb8ad !important;
+  font-size: 15px;
+}
+
+.disabilitaBlue {
+  color: white !important;
+  background-color: #1fc8db !important;
   font-size: 15px;
 }
 
